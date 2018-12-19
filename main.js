@@ -82,7 +82,7 @@ function authItAdmin() {
         var enteredPass = userChoice.adminPass;
         if (enteredPass === adminPass) {
             console.log("\n You shall pass");
-            queryItAdmin();
+            adminControl();
         }
         else {
             console.log("Password Incorrect")
@@ -197,6 +197,33 @@ function returnIt() {
     })
 }
 
+function adminControl () {
+    // Inquirer user menu
+    inquirer
+      .prompt([
+        /* Pass your questions in here */
+        {
+          type: "list",
+          name: "menuChoice",
+          message: "Make a selection from below: ",
+          choices: ['Update movie inventory', 'Update movie details', 'Add a new movie']
+        }
+      ]).then(function (userChoice) {
+          // depending on the user selection, 
+          switch (userChoice.menuChoice) {
+          case 'Update movie inventory':
+            queryItAdmin();
+            break;
+          case "Update movie details":
+            queryItAdmin();
+            break;
+          case "Add a new movie":
+            //authItAdmin();
+            break;
+        }
+    }) 
+} 
+
 function queryItAdmin() {
     // Query the database to present full UI menu
     connection.query("SELECT * FROM movies", function(err, res, fields) {
@@ -216,11 +243,35 @@ function stockIt() {
     .prompt([
         /* Pass your questions in here */
         {
-            type: "list",
-            name: "menuChoice",
-            message: "Hi! Welcome to Mockbuster Video. Please select an option below:",
-            choices: ['Rent a movie', 'Return a movie', 'Admin: inventory manager']
+            type: "input",
+            message: "Enter the ID of the movie you wish to adjust: ",
+            name: "adjustMovie"
         }
-    ]).then
+    ]).then(function (userChoice) {
+            var movie = userChoice.adjustMovie;
+            console.log("You've chosen " + movie);
+        //     connection.query("SELECT in_stock FROM movies WHERE id = " + parseInt(movie), function (err, res) {
+        //         if (err) throw err;
+        //         // update statment
+        //         var movieStock = res;
+        //         var newMovieStock = movieStock[0].in_stock;
+        //         // update statment
+        //         var sql = `UPDATE movies
+        //         SET in_stock = ?
+        //         WHERE id = ?`;
+        //         var data = [newMovieStock + 1, movie];
+            
+        //         // execute the UPDATE statement
+        //         connection.query(sql, data, (error, results,) => {
+        //             if (error){
+        //                 return console.error(error.message);
+        //             }
+        //             console.log("Movie returned! Always be kind and rewind." + 'Rows affected:', results.affectedRows);
+        //         });
+        //         console.log("-------------------------------------------");
+        //     })
+        //     //mainMenu();
+        // })
+    })
 }
 
