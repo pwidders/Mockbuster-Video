@@ -12,20 +12,20 @@ Rent a movie:
 
     User enters a phone number to 'login' and then is presented a chart of current movies in stock. Users select the movie they wish to rent by entering the movie's unique ID number. The application then takes one copy of the movie out of inventory.
 
-    ![](\images\movie-rental.gif)
+    ![](images\movie-rental.gif)
 
 Return a movie:
 
     User can return a movie, which then puts it back into stock.
 
-    ![](\images\movie-return.gif)
+    ![](images\movie-return.gif)
 
     
 Admin:
 
     Admins can log in via password protected area to perform some inventory management related functions like update stock and item details, as well as add movies. 
 
-    ![](\images\admin.gif)
+    ![](images\admin.gif)
 
 ### Prerequisites
 
